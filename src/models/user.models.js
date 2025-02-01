@@ -67,7 +67,6 @@ userSchema.methods.isPassword = async function(password) {
     return await bcrypt.compare(password, this.password)
 }
 
-
 // using jwt to generate access token and refresh token
 userSchema.methods.generateAccessToken = function() {
     return jwt.sign(
