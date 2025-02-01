@@ -28,6 +28,7 @@ const userSchema = new Schema(
         },
         avatar: {
             type: String,
+            required: true,
         },
         coverImage: {
             type: String,
@@ -59,7 +60,7 @@ userSchema.pre("save", async function(next) {
     if(!this.isModified("password")) return next()
 
     // else encrypt password
-    this.password = bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 
